@@ -1,0 +1,93 @@
+* {
+    border: none;
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "JetBrains Mono", monospace;
+    /* Recommended font sizes: 720p: ~14px, 1080p: ~18px */
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #383c4a;
+    color: #cdcdcd;
+    border-radius: 0;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.termite {
+    border: 2px solid #3F3F3F;
+}
+
+window#waybar.chromium {
+    border: 2px solid #FFFFFF;
+    border: none;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+    background-color: transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.urgent {
+    border: 2px solid #eb4d4b;
+}
+
+#workspaces button {
+    padding: 2px;
+    color: #dedede;
+    border: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    border: 2px solid #5294e2;
+}
+
+#window {
+    margin-left: 16px;
+    font-family: "Noto Sans", monospace;
+    color: #dedede;
+}
+
+#mode,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd,
+#bluetooth,
+#custom-session,
+#custom-gamma {
+    padding: 2px 6px;
+    margin: 2px 4px;
+    color: #dedede;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 2;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 2;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+/* #network.disconnected {
+} */
