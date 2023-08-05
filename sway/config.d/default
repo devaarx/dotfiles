@@ -1,6 +1,6 @@
-### Variables
+## Variables
 
-set $mod Mod1
+set $mod Mod4
 set $left h
 set $down j
 set $up k
@@ -11,7 +11,7 @@ set $menu wofi --show drun -I
 include /etc/sway/config-vars.d/*
 
 ## Wallpaper
-output * bg /home/deba/Pictures/Wallpapers/pexels-photo-797643.jpeg fill
+output * bg /home/deba/Pictures/Wallpapers/pexels-toyota.jpg fill
 
 # Display Configuration
 output HDMI-A-1 {
@@ -20,10 +20,11 @@ output HDMI-A-1 {
 }
 
 # Windows Gaps
-gaps inner 10
+gaps inner 8
 gaps outer 1
 default_border pixel 2
 default_floating_border pixel 2
+client.focused #5294e2 #5294e2 #5294e2
 
 # Status Bar
 bar {
@@ -44,6 +45,7 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="ristretto"] floating enable
 for_window [app_id="galculator"] floating enable
+for_window [app_id="gnome-system-monitor"] floating enable
 
 #
 # Idle configuration
@@ -56,7 +58,7 @@ exec swayidle -w \
          before-sleep 'swaylock -f -c 383c4a'
 
 # Lock manually
-bindsym Mod4+L exec "swaylock -f -c 383c4a"
+bindsym Mod1+L exec "swaylock -f -c 383c4a"
 
 ### Input configuration
 #
@@ -83,7 +85,7 @@ bindsym Mod4+L exec "swaylock -f -c 383c4a"
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+Space exec $menu
+    bindsym Mod1+Space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -125,7 +127,7 @@ bindsym XF86Search exec $menu
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
-    bindsym $mod+Tab workspace back_and_forth
+    bindsym Mod1+Tab workspace back_and_forth
     # bindsym $mod+Shift+Tab workspace prev
 
     # Move the focused window with the same, but add Shift
