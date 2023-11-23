@@ -1,110 +1,146 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    // "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-center": ["sway/mode"],
-    "modules-right": ["tray", "pulseaudio", "bluetooth", "custom/gamma", "memory", "cpu", "network", "clock","custom/session"],
-    // Modules configuration
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name}",
-	"persistent_workspaces": {
-	    "1": [],
-            "2": [],
-            "3": [],
-	    "4": []
-        }
-        // "format-icons": {
-        //    "1": "",
-        //    "2": "",
-        //    "3": "",
-        //    "4": "",
-        //    "5": "",
-        //    "urgent": "",
-        //    "focused": "",
-        //    "default": ""
-        // }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        "timezone": "Asia/Kolkata",
-        "tooltip-format": "{:%Y-%m-%d}",
-        "format": " {:%H:%M:%OS}",
-	"on-click": "gsimplecal",
-	"interval": 1
-    },
-    "cpu": {
-        "format": " CPU [{usage}%]",
-	"on-click": "alacritty -e htop"
-    },
-    "memory": {
-        "format": " RAM [{}%]",
-	"on-click": "gnome-system-monitor"
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " NET [{signalStrength}%]",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "⚠ Disconnected",
-	"tooltip-format": "{essid}",
-	"on-click": "alacritty -e nmtui"
-    },
-    "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
-        "format": "{icon} VOL [{volume}%]",
-        "format-bluetooth": " {volume}%  {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "   {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "bluetooth": {
-        "format": " [{device_alias}]",
-        "format-disabled": "!",
-        "on-click": "blueman-manager",
-        "tooltip-format": "{num_connections} Connected"
-    },
-    "custom/session": {
-        "format": "",
-        "on-click": "nwg-bar",
-	"tooltip": false
-    },
-    "custom/gamma": {
-        "format": " [DAY]",
-	"format-alt": " [NIGHT]",
-        "on-click": "wlsunset -T 4600",
-	"tooltip": false
-    },
-    "disk": {
-  	"interval": 30,
-  	"format": "{percentage_free}% free on {path}",
+"layer": "top",
+"position": "top",
+"modules-left": ["sway/workspaces","sway/mode"],
+"modules-center": ["sway/window"],
+"modules-right":  ["tray","idle_inhibitor","custom/gamma","network","pulseaudio","clock","custom/session"],
+
+"battery": {
+  "states": {
+  "warning": 30,
+  "critical": 15
+  },
+  "format": "{icon}&#8239;{capacity}%",
+  "format-charging": "&#8239;{capacity}%",
+  "format-plugged": "&#8239;{capacity}%",
+  "format-alt": "{icon} {time}",
+  "format-icons": ["", "", "", "", "", "", ""]
+},
+"sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+},
+"tray": {
+    "icon-size": 16,
+    "spacing": 6
+},
+"clock": {
+    "interval": 1,
+    "locale": "C",
+    "format": " {:%a %d, %H:%M:%S}",
+	"tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+    "on-scroll": {
+        "calendar": 1
+     }
+},
+"cpu": {
+    "format": "&#8239;{usage}%",
+    "tooltip": false,
+    "on-click": "kitty -e 'htop'"
+},
+"memory": {
+    "interval": 30,
+    "format": " {used:0.2f}GB",
+    "max-length": 10,
+    "tooltip": false,
+    "warning": 70,
+    "critical": 90
+},
+"network": {
+  "interval": 2,
+  "format-wifi": " {signalStrength}%",
+  "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+  "format-linked": "{ifname} (No IP) ",
+  "format-disconnected": "⚠ Disconnected",
+  "tooltip-format": "{essid}",
+  "on-click": "alacritty -e nmtui"
+},
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "",
+        "deactivated": ""
     }
+},
+"backlight": {
+    // "device": "acpi_video1",
+    "format": "{icon}&#8239;{percent}%",
+    "format-icons": ["", ""],
+    "on-scroll-down": "brightnessctl -c backlight set 1%-",
+    "on-scroll-up": "brightnessctl -c backlight set +1%"
+},
+"pulseaudio": {
+  // "scroll-step": 1, // %, can be a float
+  "format": "{icon} {volume}% {format_source}",
+  "format-bluetooth": "{icon} {volume}% {format_source}",
+  "format-bluetooth-muted": " {format_source}",
+  "format-muted": "  {format_source}",
+  "format-source": " {volume}%",
+  "format-source-muted": "",
+  "format-icons": {
+    "headphone": "",
+    "hands-free": "",
+    "headset": "🎧",
+    "phone": "",
+    "portable": "",
+    "car": "",
+    "default": ["", "", "", ""]
+  },
+  "on-click": "pavucontrol"
+},
+"mpd": {
+  "format": "{stateIcon} {artist} - {title}",
+  "format-disconnected": "🎶",
+  "format-stopped": "♪",
+  "interval": 10,
+  "consume-icons": {
+    "on": " " // Icon shows only when "consume" is on
+  },
+  "random-icons": {
+    "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+    "on": " "
+  },
+  "repeat-icons": {
+    "on": " "
+  },
+  "single-icons": {
+    "on": "1 "
+  },
+  "state-icons": {
+    "paused": "",
+    "playing": ""
+  },
+  "tooltip-format": "MPD (connected)",
+  "tooltip-format-disconnected": "MPD (disconnected)",
+  "max-length": 35
+},
+"custom/recorder": {
+    "format": " Rec",
+    "format-disabled": " Off-air", //An empty format will hide the module.
+    "return-type": "json",
+    "interval": 1,
+    "exec": "echo '{\"class\": \"recording\"}'",
+    "exec-if": "pgrep wf-recorder",
+},
+"custom/audiorec": {
+    "format": "♬ Rec",
+    "format-disabled": "♬ Off-air", //An empty format will hide the module.
+    "return-type": "json",
+    "interval": 1,
+    "exec": "echo '{\"class\": \"audio recording\"}'",
+    "exec-if": "pgrep ffmpeg",
+},
+"custom/gamma": {
+    "format": "",
+    "format-alt": "",
+    "on-click": "wlsunset -T 4800",
+    "tooltip": false
+},
+"sway/window": {
+    "max-length": 100,
+},
+"custom/session": {
+	"format": "",
+	"on-click": "nwg-bar",
+	"tooltip": false
+},
 }

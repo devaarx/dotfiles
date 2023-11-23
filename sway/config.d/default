@@ -11,7 +11,7 @@ set $menu wofi --show drun -I
 include /etc/sway/config-vars.d/*
 
 ## Wallpaper
-output * bg /home/deba/Pictures/Wallpapers/pexels-toyota.jpg fill
+output * bg /home/deba/Pictures/Wallpapers/emerald-wallpaper_1920x1080.png fill
 
 # Display Configuration
 output HDMI-A-1 {
@@ -20,11 +20,11 @@ output HDMI-A-1 {
 }
 
 # Windows Gaps
-gaps inner 8
+gaps inner 1
 gaps outer 1
 default_border pixel 2
 default_floating_border pixel 2
-client.focused #5294e2 #5294e2 #5294e2
+# client.focused #5294e2 #5294e2 #5294e2
 
 # Status Bar
 bar {
@@ -32,11 +32,12 @@ bar {
 }
 
 # Take a Screenshot with the region select
-bindsym Print exec grim -t jpeg -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
 
 exec --no-startup-id dbus-update-activation-environment --all DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &	
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id blueman-applet &
 
 #
 # Floating Windows
@@ -45,7 +46,6 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="ristretto"] floating enable
 for_window [app_id="galculator"] floating enable
-for_window [app_id="gnome-system-monitor"] floating enable
 
 #
 # Idle configuration
@@ -82,10 +82,10 @@ bindsym Mod1+L exec "swaylock -f -c 383c4a"
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+q kill
+    bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym Mod1+Space exec $menu
+    bindsym $mod+Space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -230,5 +230,11 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+#
+# Custom Keybindings
+#
+bindsym $mod+0x2e exec flatpak run com.tomjwatson.Emote
+
 
 include /etc/sway/config.d/*
