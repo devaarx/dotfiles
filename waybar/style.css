@@ -1,8 +1,8 @@
 * {
     font-family: "JetBrains Mono", monospace;
-    font-size: 16px;
-    min-height: 0;
-    color: white;
+    font-size: 17px;
+    min-height: 28px;
+    color: #cdcdcd;
 }
 
 window#waybar {
@@ -10,12 +10,12 @@ window#waybar {
 }
 
 #workspaces {
-	margin-right: 14px;
+    margin-right: 14px;
 }
 
 #workspaces button {
     border-radius: 0px;
-    padding: 4px 4px;
+    padding: 0px 4px;
     background-color: #323232;
 }
 
@@ -52,5 +52,11 @@ window#waybar {
 #battery, 
 #clock, 
 #network {
-     padding: 0 10px;
+    padding: 0 14px;
+	margin: 4px 0px;
+	border-right: 1px solid #5e5e5e;
+}
+
+#custom-session {
+	border-right: none;
 }

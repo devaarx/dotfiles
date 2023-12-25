@@ -3,18 +3,18 @@
 "position": "top",
 "modules-left": ["sway/workspaces","sway/mode"],
 "modules-center": ["sway/window"],
-"modules-right":  ["tray","idle_inhibitor","custom/gamma","network","pulseaudio","clock","custom/session"],
+"modules-right":  ["tray","custom/gamma","network","pulseaudio","clock","calendar","custom/session"],
 
 "battery": {
-  "states": {
-  "warning": 30,
-  "critical": 15
-  },
-  "format": "{icon}&#8239;{capacity}%",
-  "format-charging": "&#8239;{capacity}%",
-  "format-plugged": "&#8239;{capacity}%",
-  "format-alt": "{icon} {time}",
-  "format-icons": ["", "", "", "", "", "", ""]
+	"states": {
+  		"warning": 30,
+  		"critical": 15
+  	},
+  	"format": "{icon}&#8239;{capacity}%",
+  	"format-charging": "&#8239;{capacity}%",
+  	"format-plugged": "&#8239;{capacity}%",
+  	"format-alt": "{icon} {time}",
+  	"format-icons": ["", "", "", "", "", "", ""]
 },
 "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
@@ -23,10 +23,15 @@
     "icon-size": 16,
     "spacing": 6
 },
+"calendar": {
+	"locale": "C",
+    "format": "",
+	
+},
 "clock": {
     "interval": 1,
     "locale": "C",
-    "format": " {:%a %d, %H:%M:%S}",
+    "format": "📅️ {:%a %d, %H:%M:%S}",
 	"tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
     "on-scroll": {
         "calendar": 1
@@ -47,10 +52,10 @@
 },
 "network": {
   "interval": 2,
-  "format-wifi": " {signalStrength}%",
+  "format-wifi": "📡 {signalStrength}%",
   "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
   "format-linked": "{ifname} (No IP) ",
-  "format-disconnected": "⚠ Disconnected",
+  "format-disconnected": "⚠️ Disconnected",
   "tooltip-format": "{essid}",
   "on-click": "alacritty -e nmtui"
 },
@@ -70,20 +75,20 @@
 },
 "pulseaudio": {
   // "scroll-step": 1, // %, can be a float
-  "format": "{icon} {volume}% {format_source}",
+  "format": "{icon} {volume}%",
   "format-bluetooth": "{icon} {volume}% {format_source}",
   "format-bluetooth-muted": " {format_source}",
   "format-muted": "  {format_source}",
   "format-source": " {volume}%",
   "format-source-muted": "",
   "format-icons": {
-    "headphone": "",
+    "headphone": "🎧️",
     "hands-free": "",
     "headset": "🎧",
-    "phone": "",
-    "portable": "",
-    "car": "",
-    "default": ["", "", "", ""]
+    "phone": "📞️",
+    "portable": "📞️",
+    "car": "🚗️",
+    "default": ["🔈️", "🔉️", "🔊️"]
   },
   "on-click": "pavucontrol"
 },
@@ -130,8 +135,8 @@
     "exec-if": "pgrep ffmpeg",
 },
 "custom/gamma": {
-    "format": "",
-    "format-alt": "",
+    "format": "☀️",
+    "format-alt": "🌙",
     "on-click": "wlsunset -T 4800",
     "tooltip": false
 },
@@ -139,7 +144,7 @@
     "max-length": 100,
 },
 "custom/session": {
-	"format": "",
+	"format": "➡️",
 	"on-click": "nwg-bar",
 	"tooltip": false
 },
