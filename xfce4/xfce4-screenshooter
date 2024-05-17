@@ -1,0 +1,9 @@
+app=/usr/lib/firefox-esr/firefox-esr
+custom_action_command=none
+last_user=
+last_extension=png
+screenshot_dir=file:/home/deva/Pictures/Screenshots
+enable_imgur_upload=true
+show_in_folder=true
+action=1
+
