@@ -1,0 +1,18 @@
+.xfce4-panel .tasklist .toggle {
+	padding-left: 8px;
+	padding-right: 8px;
+	border-radius: 0px;
+}
+
+#whiskermenu-window treeview {
+	padding-left: 6px;
+}
+
+.xfce4-panel.panel button {
+    border-radius: 0px;
+}
+
+#xfwm-tabwin {
+   -XfwmTabwinWidget-icon-size: 40px;
+   -XfwmTabwinWidget-preview-size: 320px;
+}
